@@ -1,25 +1,34 @@
+// Search data
+const searchElements = (dataLimit) => {
+    const searchItem = document.getElementById('search-item').value;
+    loadPhoneData(searchItem, dataLimit);
+}
+
+// Search results on for 10 data
+document.getElementById('btn-search').addEventListener('click', function () {
+    searchElements(10);
+})
+
+// Search results for all data
+document.getElementById('btn-showall').addEventListener('click', function () {
+    searchElements();
+})
+
 // Load phone data
-const loadPhoneData = async (searchItem) => {
+const loadPhoneData = async (searchItem, dataLimit) => {
     const url = ` https://openapi.programming-hero.com/api/phones?search=${searchItem}`
     const res = await fetch(url);
     const data = await res.json();
-    displayData(data.data);
+    displayData(data.data, dataLimit);
 }
 
-
-// Search results
-document.getElementById('btn-search').addEventListener('click', function () {
-    const searchItem = document.getElementById('search-item').value;
-    loadPhoneData(searchItem);
-})
-
 // Display all the cards
-const displayData = phones => {
+const displayData = (phones, dataLimit) => {
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = "";
 
     const showAll = document.getElementById('show-all');
-    if (phones.length > 10) {
+    if (dataLimit && phones.length > 10) {
         phones = phones.slice(0, 10);
         showAll.classList.remove('d-none');
     } else {
