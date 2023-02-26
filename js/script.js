@@ -27,12 +27,21 @@ const displayData = (phones, dataLimit) => {
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = "";
 
+    // Display data limit
     const showAll = document.getElementById('show-all');
     if (dataLimit && phones.length > 10) {
         phones = phones.slice(0, 10);
         showAll.classList.remove('d-none');
     } else {
         showAll.classList.add('d-none');
+    }
+
+    // Display no match result
+    const noMatch = document.getElementById('no-match');
+    if (phones.length === 0) {
+        noMatch.classList.remove('d-none');
+    } else {
+        noMatch.classList.add('d-none');
     }
 
     phones.forEach(phone => {
