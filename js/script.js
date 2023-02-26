@@ -8,7 +8,7 @@ const loadPhoneData = async (searchItem) => {
 
 
 // Search results
-document.getElementById('btn-search').addEventListener('click', function() {
+document.getElementById('btn-search').addEventListener('click', function () {
     const searchItem = document.getElementById('search-item').value;
     loadPhoneData(searchItem);
 })
@@ -17,6 +17,15 @@ document.getElementById('btn-search').addEventListener('click', function() {
 const displayData = phones => {
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = "";
+
+    const showAll = document.getElementById('show-all');
+    if (phones.length > 10) {
+        phones = phones.slice(0, 10);
+        showAll.classList.remove('d-none');
+    } else {
+        showAll.classList.add('d-none');
+    }
+
     phones.forEach(phone => {
         const newDiv = document.createElement('div');
         newDiv.classList.add('col');
