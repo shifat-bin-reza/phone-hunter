@@ -16,6 +16,13 @@ document.getElementById('btn-showall').addEventListener('click', function () {
     searchElements();
 })
 
+// Enter key functionality
+document.getElementById('search-item').addEventListener('keypress', function (event) {
+    if (event.key == 'Enter') {
+        searchElements(10);
+    }
+})
+
 // Spinner for data loading
 const toggleSpinner = isLoading => {
     const loadingSpinner = document.getElementById('loading-spinner');
