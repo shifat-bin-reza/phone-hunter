@@ -1,5 +1,7 @@
 // Search data
 const searchElements = (dataLimit) => {
+    // Start spinner
+    toggleSpinner(true);
     const searchItem = document.getElementById('search-item').value;
     loadPhoneData(searchItem, dataLimit);
 }
@@ -13,6 +15,16 @@ document.getElementById('btn-search').addEventListener('click', function () {
 document.getElementById('btn-showall').addEventListener('click', function () {
     searchElements();
 })
+
+// Spinner for data loading
+const toggleSpinner = isLoading => {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    if (isLoading) {
+        loadingSpinner.classList.remove('d-none');
+    } else {
+        loadingSpinner.classList.add('d-none');
+    }
+}
 
 // Load phone data
 const loadPhoneData = async (searchItem, dataLimit) => {
@@ -59,4 +71,6 @@ const displayData = (phones, dataLimit) => {
         `
         cardContainer.appendChild(newDiv);
     })
+    // Stop spinner
+    toggleSpinner(false);
 }
