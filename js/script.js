@@ -1,11 +1,17 @@
 // Load phone data
-const loadPhoneData = async () => {
-    const url = `https://openapi.programming-hero.com/api/phones?search=iphone`
+const loadPhoneData = async (searchItem) => {
+    const url = ` https://openapi.programming-hero.com/api/phones?search=${searchItem}`
     const res = await fetch(url);
     const data = await res.json();
     displayData(data.data);
 }
 
+
+// Search results
+document.getElementById('btn-search').addEventListener('click', function() {
+    const searchItem = document.getElementById('search-item').value;
+    loadPhoneData(searchItem);
+})
 
 // Display all the cards
 const displayData = phones => {
@@ -27,5 +33,3 @@ const displayData = phones => {
         cardContainer.appendChild(newDiv);
     })
 }
-
-loadPhoneData();
